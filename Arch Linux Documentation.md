@@ -15,11 +15,11 @@ This is the documentation for my Arch Linux Install
 | SCSI Controller            | LSI Logic          |
 | Virtual Disk Type          | SCSI               |
 | Maximum Disk Size          | 20GB               |
-- Boot the sy stem in UEFI mode
-    - Opened the .vmx file in iso folder, and added: firmware="efi" as the second line of the file to 
+- Boot the system in UEFI mode
+    - Opened the .vmx file in iso folder, and added: firmware="efi" as the second line of the file to boot in UEFI
 ## Connect to Internet
 - Ensure network interface is listed using `ip link`
-- Ping google.com to verify connection
+- `ping google.com` to verify connection
 ## Set Date/time
  - Use `timedatectl` to view current system clock
  - Use `timedatectl list-timezones` to view list of timezones and find applicable timezone: America/Chicago 
@@ -45,12 +45,13 @@ This is the documentation for my Arch Linux Install
         - `mount /dev/sda2 /mnt`
         - `mount /dev/sda1 /mnt/boot` 
 ## Install Things
-- `pacstrap -K /mnt base linux linux-firmware` 
+- `pacstrap -K /mnt base linux linux-firmware` installs base package, Linux kernel, and firmware
 - Also install nano, tree, netctl, dhcpcd, man, sudo,  and other packages needed
     - This contributed to solving *Error 2*, described below in Errors section
 
 ## Configuration
- - Generate fstab file: `genfstab -U /mnt >> /mnt/etc/fstab`    - chroot into /mnt: `arch-chroot /mnt`
+ - Generate fstab file: `genfstab -U /mnt >> /mnt/etc/fstab`  
+- chroot into /mnt: `arch-chroot /mnt`
 - set timezone to America/Chicago
 - Create locales with `locale-gen`, edit with `nano /etc/locale.gen` and uncomment `en_us.UTF-8 UTF-8`
 - `nano /etc/hostname` and type in hostname. 
@@ -58,22 +59,22 @@ This is the documentation for my Arch Linux Install
 
 ## Boot Loader
 I chose to use GRUB as my bootloader because it seemed like it had the most features and fewest drawbacks/incompatibility issues. Do the following while chrooted into root partition (/mnt). Not doing this could be what caused *Error 1* described  below.
-- `pacman -S grub efibootmgr`
+-Install with `pacman -S grub efibootmgr`
 - Make sure EFI system partition is mounted (/mnt/boot)
-- `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
+- Run this to install in EFI system partition `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
 - Generate main configuration file: `grub-mkconfig -o /boot/grub/grub.cfg` 
 - `exit` and `reboot`
 
 ## Post Wiki Installation Guide
 ### Network configuration
 I ran into networking issues on my first GRUB install, as described below in *Error 2*. After reverting to pre-GRUB snapshot, reinstalling, and rebooting, I used the following commands to connect to the internet. 
-- `systemctl start dhcpcd.service`
-- `pacman -Syu`
-- `dhcpcd`
+- `systemctl start dhcpcd.service`enables dhcpcd to start when system boots
+- `pacman -Syu` update system and sync databases
+- `dhcpcd` 
 ### Add users
 How I added users, assigned them passwords, gave sudo permissions, etc.
- - `useradd -m `*username*
- - `passwd `*username*
+ - `useradd -m `*username*  to add user
+ - `passwd `*username* to set password for a user
 - `chage -d 0 codi` to require user *codi* to change password after first login
 - Sudo Permissions
     - `sudo visudo` to edit `/etc/sudoers` file, which contains info on users/groups with sudo permissions among other sudo info. This uses `vi` as the text editor by default, which I have no experience with. Instead, I ran this command: 
@@ -86,12 +87,13 @@ How I added users, assigned them passwords, gave sudo permissions, etc.
 That's it, that was all the steps to get LXDE working.
 
 ### Aliases
-- `ls='ls --color=auto'` 
+- When I run `ls`, it will have coloring because `alias ls='ls --color=auto'` 
+
 
 ### SSH into class terminal
 - `pacman -S openssh`
 - turn on vpn
-- `ssh -p 22 sysadmin@10.10.1.103` 
+- `ssh -p 22 sysadmin@10.10.1.103` to ssh into my terminal 
 
 ### Installing  shell
 I chose to install `fish` as I read good things about it as an alternative shell and liked that it is "interactive and user-friendly" since I'm new to linux. Did the following logged in as root:
@@ -100,6 +102,7 @@ I chose to install `fish` as I read good things about it as an alternative shell
 
 ### Web browser
 I installed links because it is lightweight and I thought it would be fun to have a text-only navigator.
+- `pacman -S links` 
 
 
 
