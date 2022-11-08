@@ -1,7 +1,7 @@
 # Docker Documentation
 ## Docker Install
--  For my Docker install, I navigated to https://docs.docker.com/desktop/install/windows-install/ and downloaded the Windows install o.
-- I receved this alert after restarting my laptop and running Docker:
+-  For my Docker install, I navigated to https://docs.docker.com/desktop/install/windows-install/ and downloaded the Windows installer.
+- I received this alert after restarting my laptop and running Docker:
     - WSL 2 installation is incomplete
 
             The WSL 2 Linux kernel is now installed using a separate MSI update package. Please click the link and follow the instructions to install the kernel update:
