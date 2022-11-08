@@ -16,14 +16,14 @@
 In Powershell: 
 1. Make a new directory for Wordpress:  `mkdir wordpress`
  2. Change directory: `cd wordpress`
- 3. Open Visual Studio Code (or other code editor) and create a compose file using yaml. 
+ 3. Open Visual Studio Code (or other code editor) and create a compose file using yaml.            https://github.com/web1312/sysAdminDocumentation.github.io/blob/d97d3926b839937f8c3a9e3c7fca34253f149fad/compose.yaml#L1-L28
  4. Copy the compose file to the Wordpress directory: `cp `*C://Path/to/compose.yml*
     - Make sure you are still inside Wordpress directory when you run command
 5. Use `ls` to make sure compose file is in the Wordpress directory 
  6. Run `docker compose up -d` to start the MySQL and Wordpress containers
 
 ## Wordpress Setup
- Enter `http://localhost:8000/` in browser and ordpress setup screen should appear. 
+ Enter `http://localhost:8000/` in browser and the Wordpress setup screen should appear. 
  Fill out the fields and the website will be created. 
 
 ## Screenshots
