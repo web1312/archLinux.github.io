@@ -26,3 +26,6 @@ In Powershell:
  Enter `http://localhost:8000/` in browser and ordpress setup screen should appear. 
  Fill out the fields and the website will be created. 
 
+## Screenshots
+![Screenshot of Wordpress login](loginScreen.png "Wordpress login")
+![Screenshot of Wordpress running on Docker container](runningScreen.png "Wordpress running")
