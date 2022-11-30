@@ -53,7 +53,7 @@
             sysctls:
             - net.ipv4.conf.all.src_valid_mark=1
 
-- Change TZ to different timezone if necessary and SERVERURLto your droplets IPV4 address
+- Change TZ to different timezone if necessary and SERVERURL to your droplet IPV4 address
 
 - Start Wireguard: 
    
@@ -65,5 +65,6 @@
       docker-compose logs -f wireguard
 
 - Open wireguard app on phone and scan QR code
+- You will know VPN is working if you IP address changes like this: [Before](before.PNG) and [After](afterWireguard.PNG).
 
  Source: https://thematrix.dev/setup-wireguard-vpn-server-with-docker/
